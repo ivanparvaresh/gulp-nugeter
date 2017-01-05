@@ -73,7 +73,7 @@ function push(options) {
 
             var version = info;
 
-            var args=["push", options.pkgdir + "\\" +ooptions.name + "." + version + ".nupkg", "-source", options.nugetsource];
+            var args=["push", options.pkgdir + "\\" + options.name + "." + version + ".nupkg", "-source", options.nugetsource];
             if (options.nugetconfig){
                 args.push("-configfile");
                 args.push(options.nugetconfig);
