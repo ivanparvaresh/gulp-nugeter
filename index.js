@@ -58,6 +58,9 @@ function push(options) {
 
     return through.obj(function (file, enc, cb) {
 
+        if (!fs.existsSync(options.name)) {
+            fs.mkdirSync(options.name);
+        }
         if (!fs.existsSync(options.pkgdir)) {
             fs.mkdirSync(options.pkgdir);
         }
@@ -68,10 +71,9 @@ function push(options) {
                 return;
             }
 
-            var version = info.version;
-            var title=info.title;
+            var version = info;
 
-            var args=["push", options.pkgdir + "\\" +title + "." + version + ".nupkg", "-source", options.nugetsource];
+            var args=["push", options.pkgdir + "\\" +ooptions.name + "." + version + ".nupkg", "-source", options.nugetsource];
             if (options.nugetconfig){
                 args.push("-configfile");
                 args.push(options.nugetconfig);
